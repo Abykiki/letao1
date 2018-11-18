@@ -4,6 +4,20 @@ ul {
     padding:0;
     margin:0;
 }
+.red {
+  color: #A94442;    
+}
+a:link,
+a:visited,
+a:hover,
+a:active {
+  text-decoration: none;
+}
+.table.table-bordered th,
+.table.table-bordered td {
+  text-align: center;
+  vertical-align: middle;
+}
 /* 登录页 */
 .body_bg {
     background-color: #222D32;
@@ -11,6 +25,9 @@ ul {
 }
 .mt-150 {
     margin-top: 150px;
+}
+.mt_20 {
+    margin-top: 20px;
 }
 .panel-title {
     height: 40px;
