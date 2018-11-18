@@ -13,9 +13,11 @@ a:hover,
 a:active {
   text-decoration: none;
 }
+/* 注意权重问题 */
 .table.table-bordered th,
 .table.table-bordered td {
   text-align: center;
+  /* 表格里的垂直居中设置 */
   vertical-align: middle;
 }
 /* 登录页 */
