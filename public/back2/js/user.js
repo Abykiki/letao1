@@ -30,7 +30,7 @@ $(function() {
 
         $('tbody').html( htmlStr );
 
-        // 进行分页初始化
+        // 分页初始化
         $('#paginator').bootstrapPaginator({
           // 版本号
           bootstrapMajorVersion: 3,
