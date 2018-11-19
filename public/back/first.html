@@ -13,58 +13,85 @@
 <body>
     <!-- 左侧的侧边拦 -->
     <div class="lt_aside">
-            <!-- 标题 -->
-            <div class="brand">
-                <a href="#">黑马29期</a>
-            </div>
-            <!-- 用户头像 -->
-            <div class="user">
-                <img src="./images/02.jpg" alt="">
-                <p>超级管理员</p>
-            </div>
-            <!-- 导航 -->
-            <div class="nav">
-                <ul>
-                    <li>
-                        <a href="user.html">
-                            <i class="glyphicon glyphicon-user"></i>
-                            <span>用户管理</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:;">
-                            <i class="glyphicon glyphicon-list"></i>
-                            <span>分类管理</span>
-                        </a>
-                        <div class="child" style="display:block">
-                             <a href="first.html" class="current">一级分类</a>
-                            <a href="second.html">二级分类</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="product.html">
-                        <i class="glyphicon glyphicon-tags"></i>
-                        <span>商品管理</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+        <!-- 标题 -->
+        <div class="brand">
+            <a href="#">黑马29期</a>
+        </div>
+        <!-- 用户头像 -->
+        <div class="user">
+            <img src="./images/02.jpg" alt="">
+            <p>超级管理员</p>
+        </div>
+        <!-- 导航 -->
+        <div class="nav">
+            <ul>
+                <li>
+                    <a href="user.html">
+                        <i class="glyphicon glyphicon-user"></i>
+                        <span>用户管理</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="javascript:;">
+                        <i class="glyphicon glyphicon-list"></i>
+                        <span>分类管理</span>
+                    </a>
+                    <div class="child" style="display:block">
+                            <a href="first.html" class="current">一级分类</a>
+                        <a href="second.html">二级分类</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="product.html">
+                    <i class="glyphicon glyphicon-tags"></i>
+                    <span>商品管理</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
     </div>
     <!-- 右侧的主体 -->
     <div class="lt_main">
+        <!-- 顶部 -->
         <div class="lt_topbar">
             <a href="javascript:;" class="icon_left pull-left"><i class="glyphicon glyphicon-align-justify"></i></a>
             <a href="javascript:;" class="icon_right pull-right"> <i class="glyphicon glyphicon-log-out"></i> </a>
         </div>
-        <div class="container_fluid">
+        <div class="container-fluid">
+            <!-- 链接导航 -->
             <ol class="breadcrumb mt_20">
                 <li><a href="index.html">管理系统</a></li>
                 <li class="active">分类管理</li>
                 <li class="active">一级分类</li>
             </ol>
+            <div class="lt_content">
+                <!-- 按钮 -->
+                <button class="btn btn-default addBtn">添加分类</button>
+                <!-- 表格 -->
+                 <table class="table table-bordered table-hover mt_20">
+                     <thead>
+                         <tr>
+                             <th width="20%">序号</th>
+                             <th width="80%">一级分类名</th>
+                         </tr>
+                     </thead>
+                     <tbody>
+                         <tr>
+                             <td>1</td>
+                             <td>pp馆</td>
+                         </tr>
+                     </tbody>
+                 </table>
+                 <div class="text-right">
+    
+                    <!-- 分页容器 -->
+                    <ul id="paginator"></ul>
+                 </div>
+            </div>
         </div>
     </div>
 
+    <!-- "退出"的模态框 -->
     <!-- 外层的蒙层 -->
     <div class="modal fade" tabindex="-1" id="logoutModal">
         <!-- 内部的模态框 -->
@@ -90,5 +117,57 @@
             </div>
         </div>
     </div>
+
+    <!-- "添加分类"模态框 -->
+    <div class="modal fade" tabindex="-1" id="addModal">
+        <!-- 内部的模态框 -->
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+            <!-- 头部 -->
+            <form id="form">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span>&times;</span></button>
+                <h4 class="modal-title">添加分类</h4>
+            </div>
+            <!-- submit按钮,需要和form搭配使用  -->
+            <!-- 中间 -->
+                <div class="modal-body">
+                    <!-- <p class="red"><i class="glyphicon glyphicon-info-sign"></i><span></span></p> -->
+                    <!-- 使用bootstrap插件  全局css样式 表单 -->
+                        <!-- 每一行外层要套一个 form-group 父元素
+                            将来表单校验依赖于这个父元素,实现添加提示信息,如果没有,表单校验插件会报错 -->
+                    <div class="form-group">
+                        <input type="text" name="categoryName" class="form-control" placeholder="请输入一级分类">
+                    </div>
+                </div>
+                <!-- 底部 -->
+                <!-- data-dismiss="modal" 可以用于关闭模态框 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="submit" class="btn btn-primary" id="confirmBtn">添加</button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 模板 -->
+    <script type="text/template" id="tmp">
+        {{ each rows v i }}
+        <tr>
+            <td>{{ i+1+(page-1)*size }}</td>
+            <td>{{ v.categoryName }}</td>
+        </tr>
+        {{ /each }}
+    </script>
+    <script src="./lib/jquery/jquery.min.js"></script>
+    <script src="./lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="./lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+    <script src="./lib/nprogress/nprogress.js"></script>
+    <script src="./lib/bootstrap-paginator/bootstrap-paginator.min.js"></script>
+    <script src="./lib/artTemplate/template-web.js"></script>
+    <script src="./js/common.js"></script>
+    <script src="./js/isLogin.js"></script>
+    <script src="./js/first.js"></script>
 </body>
 </html>
